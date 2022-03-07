@@ -1,125 +1,145 @@
 ---
 - hosts: localhost
-  tasks:
-    - name: Homebrew
-      include_role:
-        name: homebrew
-        args:
-          homebrew_casks:
-            - 1password
-            - android-sdk
-            - android-studio
-            - datagrip
-            - docker
-            - dropbox
-            - figma
-            - google-chrome
-            - google-cloud-sdk
-            - iterm2
-            - kindle
-            - ngrok
-            - slack
-            - sublime-text
-            - telegram
-            - visual-studio-code
-            - vlc
-            - zoom
-            - tuple
-          homebrew_packages:
-            - autoconf
-            - automake
-            - aws-iam-authenticator
-            - awscli
-            - bfg
-            - coreutils
-            - curl
-            - dbt@0.18.0
-            - direnv
-            - dnsmasq
-            - fzf
-            - gnu-time
-            - gpg
-            - heroku
-            - htop
-            - imagemagick@6
-            - kubectx
-            - kubernetes-cli
-            - kubernetes-helm
-            - libtool
-            - libxslt
-            - libyaml
-            - mas
-            - openssl
-            - pkg-config
-            - postgresql
-            - rcm
-            - readline
-            - redis
-            - sqlite3
-            - tmux
-            - unixodbc
-            - unzip
-            - vim
-            - watchman
-            - xz
-            - yarn
-            - zlib
-            - zsh
-          homebrew_taps:
-            - adoptopenjdk/openjdk,
-            - fishtown-analytics/dbt
-            - heroku/brew
-            - homebrew/cask-versions
-            - thoughtbot/formulae
-            - weaveworks/tap
+  vars:
+    asdf_plugins:
+      - nodejs
+      - python
+      - ruby
+      - terraform
+    # asdf_yarn_packages:
+    #   - react-native-cli
+    #   - create-react-app
+    #   - apollo
+    #   - generator-generator
+    #   - yo
+    # dotfiles_repo: "https://github.com/mat-green/dotfiles.git"
+    # dotfiles_repo_version: main
+    # dotfiles_files:
+    #   - .osx
+    #   - .zshrc.personal.after
+    #   - .inputrc
+    homebrew_casks:
+      # - 1password
+      # - android-sdk
+      # - android-studio
+      # - datagrip
+      - docker
+      - dropbox
+      # - figma
+      - google-chrome
+      # - google-cloud-sdk
+      - iterm2
+      # - kindle
+      # - ngrok
+      - slack
+      # - telegram
+      - temurin # AKA java
+      - visual-studio-code
+      # - vlc
+      - whatsapp
+      - zoom
+    homebrew_packages:
+      # - autoconf
+      # - automake
+      # - aws-iam-authenticator
+      # - awscli
+      - bfg
+      - curl
+      # - fzf
+      - git
+      - gpg
+      - htop
+      - imagemagick@6
+      # - kubectx
+      # - kubernetes-cli
+      # - kubernetes-helm
+      # - libtool
+      # - libxslt
+      # - libyaml
+      - mas
+      - openssl
+      # - pkg-config
+      - postgresql
+      - pnpm
+      # - redis
+      # - sqlite3
+      # - unixodbc
+      - unzip
+      # - vim
+      # - watchman
+      # - xy
+      # - zlib
+      - zsh
+    homebrew_taps:
+      - homebrew/cask-versions
+    mas_signin_dialog: true
+    mas_installed_apps:
+      - { id: 406056744, name: "Evernote (7.14)" }
+      - { id: 402592703, name: "Time Out (2.6.2)" }
+      - { id: 497799835, name: "Xcode (12.0.1)" }
+      - { id: 1261265709, name: "NTFS Assistant (3.0)" }
+      - { id: 441258766, name: "Magnet (2.4.9)" }
+    mas_uninstalled_apps:
+      - { id: 408981434, name: "iMovie" }
+      - { id: 409183694, name: "Keynote" }
+      - { id: 409201541, name: "Pages" }
+      - { id: 409203825, name: "Numbers" }
+      - { id: 682658836, name: "GarageBand" }
+    vscode_extensions:
+      # - apollographql.vscode-apollo
+      # - bradlc.vscode-tailwindcss
+      # - castwide.solargraph
+      - clinyong.vscode-css-modules
+      # - jakebecker.elixir-ls
+      # - kaiwood.endwise
+      # - karunamurti.haml
+      # - ms-vscode-remote.vscode-remote-extensionpack
+      - msjsdiag.debugger-for-chrome
+      # - rebornix.ruby
+      - richie5um2.vscode-sort-json
+      - Tyriar.sort-lines
+      # - vscodevim.vim
+      - wholroyd.jinja
+      # - wingrunr21.vscode-ruby
+      - streetsidesoftware.code-spell-checker
+      - fabiospampinato.vscode-todo-plus
+      - alphabotsec.vscode-eclipse-keybindings
+      # move to settings - CoenraadS.bracket-pair-colorizer
+      - dbaeumer.vscode-eslint
+      - eamodio.gitlens
+      - EditorConfig.EditorConfig
+      # - Equinusocio.vsc-community-material-theme
+      # - Equinusocio.vsc-material-theme
+      # - equinusocio.vsc-material-theme-icons
+      - esbenp.prettier-vscode
+      # - GitHub.github-vscode-theme
+      - hashicorp.terraform
+      - jtavin.ldif
+      - lextudio.restructuredtext
+      - mrmlnc.vscode-autoprefixer
+      - ms-python.python
+      - ms-python.vscode-pylance
+      - octref.vetur
+      # - philipbe.theme-gray-matter
+      - qinjia.seti-icons
+      - redhat.vscode-yaml
+      - ritwickdey.LiveServer
+      - RomanPeshkov.vscode-text-tables
+      - Shan.code-settings-sync
+      - tomoki1207.pdf
+      - trond-snekvik.simple-rst
+      - TsumiNa.Seti-theme
+      - vincaslt.highlight-matching-tag
+      - vscode-icons-team.vscode-icons
+      - xabikos.JavaScriptSnippets
+      - yzhang.markdown-all-in-one
 
-    - name: "Install from Mac app store"
-      shell: mas install {{ item }}
-      with_items:
-        - 497799835 # xcode
 
-    - name: Oh-My-Zsh
-      include_role:
-        name: oh-my-zsh
-
-    - name: VSCode
-      include_role:
-        name: vscode
-        args:
-          vscode_extensions:
-            - apollographql.vscode-apollo
-            - bradlc.vscode-tailwindcss
-            - castwide.solargraph
-            - clinyong.vscode-css-modules
-            - eamodio.gitlens
-            - jakebecker.elixir-ls
-            - kaiwood.endwise
-            - karunamurti.haml
-            - ms-vscode-remote.vscode-remote-extensionpack
-            - ms-vscode.vscode-typescript-tslint-plugin
-            - msjsdiag.debugger-for-chrome
-            - rebornix.ruby
-            - richie5um2.vscode-sort-json
-            - Tyriar.sort-lines
-            - vscodevim.vim
-            - wholroyd.jinja
-            - wingrunr21.vscode-ruby
-            - xabikos.javascriptsnippets
-            - streetsidesoftware.code-spell-checker
-            - fabiospampinato.vscode-todo-plus
-
-    - name: ASDF-VM
-      include_role:
-        name: asdf
-        args:
-          asdf_plugins:
-            - nodejs
-            - python
-            - ruby
-            - terraform
-          # asdf_yarn_packages:
-          #   - react-native-cli
-          #   - create-react-app
-          #   - apollo
-          #   - generator-generator
-          #   - yo
+  roles:
+    - geerlingguy.mac.homebrew
+    - homebrew
+    - geerlingguy.mas
+    - oh-my-zsh
+    - vscode
+    - asdf
+    - geerlingguy.dotfiles
