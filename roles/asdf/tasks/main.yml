@@ -34,12 +34,13 @@
     mix local.hex --force
   when: ("elixir" in asdf_plugins)
 
-- name: "Install default node"
+- name: "Install default nodejs"
   shell: |
     source /Users/{{ lookup('env', 'USER') }}/.asdf/asdf.sh
     bash /Users/{{ lookup('env', 'USER') }}/.asdf/plugins/nodejs/bin/import-release-team-keyring
     asdf install nodejs {{ asdf_version_for_nodejs }}
     asdf global nodejs {{ asdf_version_for_nodejs }}
+    # eslint
   when: ("nodejs" in asdf_plugins)
 
 - name: "Install default python"
