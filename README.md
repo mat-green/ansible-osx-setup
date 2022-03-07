@@ -4,7 +4,7 @@ This repository contains an Ansible configuration for setting up a Mac from scra
 
 ## Getting Started
 
-There's a simple shell script in `bin/bootstrap` which will perform the initial steps of:
+There's a simple shell script in `./bin/bootstrap` which will perform the initial steps of:
 
 1. Installing Xcode
 2. Installing Ansible
@@ -12,7 +12,7 @@ There's a simple shell script in `bin/bootstrap` which will perform the initial 
 
 And then runs the main playbook `ansible_osx.yml`.
 
-For future updates, `bin/apply` can be used to run just the Ansible playbook without the setup commands.
+For future updates, `./bin/apply` can be used to run just the Ansible playbook without the setup commands.
 
 It's important to note that this isn't designed to be particularly robust, particularly when it comes to required env vars, it may be required to run this. Then close the terminal and open it again and re-run and then repeat this process a few times.
 
