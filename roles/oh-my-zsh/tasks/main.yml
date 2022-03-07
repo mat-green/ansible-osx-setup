@@ -9,6 +9,7 @@
     path: /etc/shells
     line: "{{ zsh_path.stdout }}"
   become: true
+  when: zsh_path is not skipped
 
 - name: Install Oh My ZSH
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
