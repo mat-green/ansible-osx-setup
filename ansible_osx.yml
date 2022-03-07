@@ -12,44 +12,62 @@
     #   - apollo
     #   - generator-generator
     #   - yo
-    # dotfiles_repo: "https://github.com/mat-green/dotfiles.git"
-    # dotfiles_repo_version: main
-    # dotfiles_files:
-    #   - .osx
-    #   - .zshrc.personal.after
-    #   - .inputrc
-    homebrew_casks:
-      # - 1password
+    dotfiles_repo: "https://github.com/mat-green/dotfiles.git"
+    dotfiles_repo_version: main
+    dotfiles_files:
+      - .zshrc.personal.before
+      - .zshrc.personal.after
+    homebrew_cask_apps:
+      - 1password
+      - adobe-acrobat-reader
+      - apache-directory-studio
       # - android-sdk
       # - android-studio
+      - canon-captureontouch-utility
       # - datagrip
+      - drawio
       - docker
       - dropbox
       # - figma
+      - firefox
+      - flux
+      - gimp
       - google-chrome
       # - google-cloud-sdk
+      - grammarly
+      - kindle
       - iterm2
-      # - kindle
+      - lastpass
+      - lens
+      - leocad
+      - libreoffice
+      - logseq
       # - ngrok
+      - paragon-ntfs
+      - rescuetime
+      - signal
       - slack
-      # - telegram
+      - spotify
+      - telegram
       - temurin # AKA java
+      - ubiquiti-unifi-controller
+      - vlc
+      - virtualbox
       - visual-studio-code
-      # - vlc
       - whatsapp
       - zoom
-    homebrew_packages:
+    homebrew_installed_packages:
       # - autoconf
       # - automake
       # - aws-iam-authenticator
       # - awscli
-      - bfg
-      - curl
+      # - bfg
+      # - curl
       # - fzf
       - git
-      - gpg
+      # - gpg
       - htop
-      - imagemagick@6
+      # - imagemagick@6
       # - kubectx
       # - kubernetes-cli
       # - kubernetes-helm
@@ -57,20 +75,27 @@
       # - libxslt
       # - libyaml
       - mas
-      - openssl
+      # - openssl
       # - pkg-config
+      - packer
+      - pgadmin4
       - postgresql
       - pnpm
       # - redis
       # - sqlite3
+      - terraform
+      - terraform-ls
       # - unixodbc
       - unzip
+      - vivaldi
       # - vim
       # - watchman
       # - xy
       # - zlib
       - zsh
+    homebrew_uninstalled_packages: []
     homebrew_taps:
+      - homebrew/cask-drivers
       - homebrew/cask-versions
     mas_signin_dialog: true
     mas_installed_apps:
@@ -133,7 +158,6 @@
       - vscode-icons-team.vscode-icons
       - xabikos.JavaScriptSnippets
       - yzhang.markdown-all-in-one
-
 
   roles:
     - geerlingguy.mac.homebrew
