@@ -1,0 +1,8 @@
+asdf_plugins: []
+asdf_version_for_erlang: 24.0.2
+asdf_version_for_elixir: 1.12.3-otp-24
+asdf_version_for_nodejs: 16.4.2
+asdf_version_for_python: 3.10.0
+asdf_version_for_ruby: 3.0.2
+asdf_version_for_terraform: 1.0.9
+asdf_yarn_packages: []
