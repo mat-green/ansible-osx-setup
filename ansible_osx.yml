@@ -48,6 +48,7 @@
       - signal
       - slack
       - spotify
+      - steam
       - telegram
       - temurin # AKA java
       - ubiquiti-unifi-controller
