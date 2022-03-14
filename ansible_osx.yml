@@ -163,7 +163,7 @@
   roles:
     - geerlingguy.mac.homebrew
     - homebrew
-    - geerlingguy.mas
+    - geerlingguy.mac.mas
     - oh-my-zsh
     - vscode
     - asdf
