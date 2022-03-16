@@ -18,12 +18,13 @@
       - .zshrc.personal.before
       - .zshrc.personal.after
     homebrew_cask_apps:
-      - 1password
-      - adobe-acrobat-reader
+      - temurin # AKA java, password
+      #- 1password
+      - adobe-acrobat-reader # password
       - apache-directory-studio
       # - android-sdk
       # - android-studio
-      - canon-captureontouch-utility
+      - canon-captureontouch-utility # password
       # - datagrip
       - drawio
       - docker
@@ -43,17 +44,16 @@
       - libreoffice
       - logseq
       # - ngrok
-      - paragon-ntfs
+      - paragon-ntfs # Gpassword
       - rescuetime
       - signal
       - slack
       - spotify
       - steam
       - telegram
-      - temurin # AKA java
-      - ubiquiti-unifi-controller
+      - ubiquiti-unifi-controller # Password
       - vlc
-      - virtualbox
+      - virtualbox # Password
       - visual-studio-code
       - whatsapp
       - zoom
@@ -65,7 +65,7 @@
       # - bfg
       # - curl
       # - fzf
-      - git
+      # - git
       # - gpg
       - htop
       # - imagemagick@6
@@ -79,16 +79,16 @@
       # - openssl
       # - pkg-config
       - packer
-      - pgadmin4
       - postgresql
+      #- pgadmin4 # Manual as if fails for some reason
       - pnpm
       # - redis
       # - sqlite3
-      - terraform
+      # - terraform
       - terraform-ls
       # - unixodbc
       - unzip
-      - vivaldi
+      #- vivaldi # Manual as if fails for some reason
       # - vim
       # - watchman
       # - xy
@@ -102,7 +102,7 @@
     mas_installed_apps:
       - { id: 406056744, name: "Evernote (7.14)" }
       - { id: 402592703, name: "Time Out (2.6.2)" }
-      - { id: 497799835, name: "Xcode (12.0.1)" }
+      # - { id: 497799835, name: "Xcode (12.0.1)" }
       - { id: 1261265709, name: "NTFS Assistant (3.0)" }
       - { id: 441258766, name: "Magnet (2.4.9)" }
     mas_uninstalled_apps:
@@ -160,11 +160,12 @@
       - xabikos.JavaScriptSnippets
       - yzhang.markdown-all-in-one
 
+# Need to stop the mac from sleeping, see http://www.rawinfopages.com/mac/how-to-customise-power-settings-terminal-mac, during the install.
   roles:
+    - asdf
     - geerlingguy.mac.homebrew
     - homebrew
     - geerlingguy.mac.mas
-    - oh-my-zsh
     - vscode
-    - asdf
+    - oh-my-zsh
     - geerlingguy.dotfiles
