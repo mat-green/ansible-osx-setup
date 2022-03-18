@@ -4,7 +4,7 @@
   local_action: command which zsh
   register: zsh_path
 
-- name: "Ensure homebrew zsh is in allowed shells"
+- name: Ensure homebrew zsh is in allowed shells
   lineinfile:
     path: /etc/shells
     line: "{{ zsh_path.stdout }}"
@@ -20,9 +20,12 @@
   shell: chsh -s $(which zsh) {{ lookup('env', 'USER') }}
   become: true
 
-- name: "Create a default ZSH configuration"
+- name: Create a default ZSH configuration
   template:
     src: templates/.zshrc.j2
     dest: "{{ lookup('env', 'HOME') }}/.zshrc"
     owner: "{{ lookup('env', 'USER') }}"
     force: yes
+
+- name: Update current session
+  shell: source "{{ lookup('env', 'HOME') }}/.zshrc"
