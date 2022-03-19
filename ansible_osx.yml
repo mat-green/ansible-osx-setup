@@ -17,8 +17,8 @@
     dotfiles_files:
       - .zshrc.personal.before
       - .zshrc.personal.after
-    homebrew_cask_apps: # Search https://formulae.brew.sh/ for apps
-      - temurin # AKA java, password
+    homebrew_cask_apps: # Search https://formulae.brew.sh/ for apps 
+      - adoptopenjdk8 # AKA java (required by ubiquiti-unifi-controller), password
       - adobe-acrobat-reader # password
       - canon-captureontouch-utility # password
       - ubiquiti-unifi-controller # Password
@@ -41,6 +41,7 @@
       - leocad
       - libreoffice
       - logseq
+      - pgadmin4
       - rescuetime
       - signal
       - slack
@@ -49,6 +50,7 @@
       - telegram
       - vlc
       - visual-studio-code
+      - vivaldi
       - whatsapp
       - zoom
     homebrew_installed_packages:  # Search https://formulae.brew.sh/ for packages
@@ -60,11 +62,10 @@
       - mas
       - packer
       - postgresql
-      #- pgadmin4 # Manual as if fails for some reason
       - pnpm
+      - syncthing
       - terraform-ls
       - unzip
-      #- vivaldi # Manual as if fails for some reason
       - zsh
     homebrew_uninstalled_packages: []
     homebrew_taps:
@@ -81,6 +82,7 @@
       - { id: 409201541, name: "Pages" }
       - { id: 409203825, name: "Numbers" }
       - { id: 682658836, name: "GarageBand" }
+    java_supplier: adoptopenjdk-8
     vscode_extensions:
       - Shan.code-settings-sync
 
