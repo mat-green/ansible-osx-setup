@@ -1,0 +1,63 @@
+# [START] Git Configuration ---------------------------------------------------
+- name: Git Email Configuration
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ lookup('env', 'GIT_EMAIL') }}"
+  when: lookup('env', 'GIT_EMAIL')
+
+- name: Git Email Configuration
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ lookup('env', 'GIT_NAME') }}"
+  when: lookup('env', 'GIT_NAME')
+# [END]   Git Configuration ---------------------------------------------------
+
+# [START] Unifi Configuration -------------------------------------------------
+- name: Unifi symbolic link to JVM
+  ansible.builtin.file:
+    src: /Library/Java/JavaVirtualMachines/{{ java_supplier }}.jdk/
+    dest: /Applications/UniFi.app/Contents/PlugIns/{{ java_supplier }}.jdk
+    state: link
+  become: true
+
+- name: Unifi Add JVMRuntime
+  ansible.builtin.lineinfile:
+    path: /Applications/UniFi.app/Contents/Info.plist
+    regexp: '^        <key>JVMRuntime</key>'
+    insertbefore: '<key>LSApplicationCategoryType</key>'
+    line: "        <key>JVMRuntime</key>"
+  become: true
+
+- name: Unifi Add JVMRuntime
+  ansible.builtin.lineinfile:
+    path: /Applications/UniFi.app/Contents/Info.plist
+    regexp: '^        <string>{{ java_supplier }}.jdk</string>'
+    insertafter: '        <key>JVMRuntime</key>'
+    line: '        <string>{{ java_supplier }}.jdk</string>'
+  become: true
+
+- name: Unifi Discover Add JVMRuntime
+  ansible.builtin.lineinfile:
+    path: /Applications/UniFi-Discover.app/Contents/Info.plist
+    regexp: '^        <key>JVMRuntime</key>'
+    insertbefore: '<key>LSApplicationCategoryType</key>'
+    line: "        <key>JVMRuntime</key>"
+  become: true
+
+- name: Unifi Discover Add JVMRuntime
+  ansible.builtin.lineinfile:
+    path: /Applications/UniFi-Discover.app/Contents/Info.plist
+    regexp: '^        <string>{{ java_supplier }}.jdk</string>'
+    insertafter: '        <key>JVMRuntime</key>'
+    line: '        <string>{{ java_supplier }}.jdk</string>'
+  become: true
+# [END]   Unifi Configuration -------------------------------------------------
+
+# [START] Mac OSX Configuration -----------------------------------------------
+- name: Set a hostname specifying strategy
+  ansible.builtin.hostname:
+    name: colossus
+    use: macsox
+# [END]   Mac OSX Configuration -----------------------------------------------
