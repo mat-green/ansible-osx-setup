@@ -56,8 +56,9 @@
     homebrew_installed_packages:  # Search https://formulae.brew.sh/ for packages
       - asdf
       - gnu-tar
-      - gpg
       - gawk
+      - git-lfs
+      - gpg
       - htop
       - mas
       - packer
