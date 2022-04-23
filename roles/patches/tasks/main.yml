@@ -60,4 +60,7 @@
   ansible.builtin.hostname:
     name: colossus
     use: macosx
+
+- name: DO Jet execution access
+  ansible.builtin.command: xattr -d -r com.apple.quarantine /usr/local/bin/jet
 # [END]   Mac OSX Configuration -----------------------------------------------

@@ -25,10 +25,11 @@
       - virtualbox # Password
       - android-file-transfer
       - apache-directory-studio
+      - balenaetcher
+      - codeship/taps/jet
       - drawio
       - docker
       - dropbox
-      - balenaetcher
       - firefox
       - flux
       - gimp
