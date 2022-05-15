@@ -56,11 +56,13 @@
       - zoom
     homebrew_installed_packages:  # Search https://formulae.brew.sh/ for packages
       - asdf
+      - doctl
       - gnu-tar
       - gawk
       - git-lfs
       - gpg
       - htop
+      - jq
       - mas
       - packer
       - postgresql
@@ -78,6 +80,7 @@
       - { id: 406056744, name: "Evernote (7.14)" }
       - { id: 402592703, name: "Time Out (2.6.2)" }
       - { id: 441258766, name: "Magnet (2.4.9)" }
+      - { id:  1147396723, name: "WhatsApp Desktop" }
     mas_uninstalled_apps:
       - { id: 408981434, name: "iMovie" }
       - { id: 409183694, name: "Keynote" }
