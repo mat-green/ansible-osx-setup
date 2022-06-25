@@ -23,6 +23,7 @@
     homebrew_cask_apps: # Search https://formulae.brew.sh/ for apps 
       - adoptopenjdk8 # AKA java (required by ubiquiti-unifi-controller), password
       - adobe-acrobat-reader # password
+      - bricklink-studio # password
       - canon-captureontouch-utility # password
       - ubiquiti-unifi-controller # Password
       - virtualbox # Password
