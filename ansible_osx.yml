@@ -1,6 +1,9 @@
 ---
 - hosts: localhost
   vars:
+    allowed_executables:
+      - /usr/local/bin/jet
+      - /Applications/LeoCAD.app
     asdf_plugins:
       - nodejs
       - python
@@ -26,6 +29,7 @@
       - android-file-transfer
       - apache-directory-studio
       - balenaetcher
+      - blender
       - codeship/taps/jet
       - drawio
       - docker

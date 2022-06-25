@@ -61,6 +61,9 @@
     name: colossus
     use: macosx
 
-- name: DO Jet execution access
-  ansible.builtin.command: xattr -d -r com.apple.quarantine /usr/local/bin/jet
+- name: Allow execution access
+  ansible.builtin.command: xattr -d -r com.apple.quarantine {{ item }}
+  with_items: "{{ allowed_executables }}"
+
+
 # [END]   Mac OSX Configuration -----------------------------------------------
