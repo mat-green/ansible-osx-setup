@@ -1,0 +1,16 @@
+galaxy_info:
+  role_name: kernel
+  author: Matthew Green
+  description: This will manage linux kernel on a system
+  license: "MIT"
+  min_ansible_version: 2.12.2
+  platforms:
+    - name: Zorin
+      versions:
+        - "16"
+  galaxy_tags:
+    - system
+    - packaging
+    - workstation
+dependencies: []
+

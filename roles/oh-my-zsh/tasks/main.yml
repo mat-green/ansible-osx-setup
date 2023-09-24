@@ -1,31 +1,66 @@
 ---
-- name: Get the path to ZSH
-  become: false
-  local_action: command which zsh
-  register: zsh_path
+- name: Install ZSH Shell
+  block:
+    - name: Install zsh package
+      ansible.builtin.package:
+        name: zsh
+        state: present
+ 
+    - name: Ensure basic .zshrc is in home directory
+      copy:
+        content: ""
+        dest: "{{ lookup('env', 'HOME') }}/.zshrc"
+        force: false
+        group: "{{ lookup('env', 'USER') }}"
+        owner: "{{ lookup('env', 'USER') }}"
+        mode: 0644
+      
+    - name: Get the path to shell
+      ansible.builtin.shell: which zsh
+      register: shell_path
 
-- name: Ensure homebrew zsh is in allowed shells
-  lineinfile:
-    path: /etc/shells
-    line: "{{ zsh_path.stdout }}"
+    - name: Ensure shell is in allowed shells
+      ansible.builtin.lineinfile:
+        path: /etc/shells
+        line: "{{ shell_path.stdout }}"
+      when: shell_path is not skipped
+
+    - name: Set shell as the default shell
+      ansible.builtin.user:
+        name: "{{ lookup('env', 'USER') }}"
+        shell: "{{ shell_path.stdout }}"
+      when: shell_path is not skipped
+      notify:
+        - Restart session
   become: true
-  when: zsh_path is not skipped
+  when: lookup('env', 'SHELL') is not contains('zsh')
 
 - name: Install Oh My ZSH
-  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  args:
-    creates: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
+  block:
+    - name: Install supporting oh-my-zsh packages
+      become: true
+      ansible.builtin.package:
+        name: git
+        state: present
+    
+    - name: Create temporary file
+      ansible.builtin.tempfile:
+        state: directory
+      register: ohmyzsh_temp
 
-- name: Set ZSH as the default shell
-  shell: chsh -s $(which zsh) {{ lookup('env', 'USER') }}
-  become: true
+    - name: Download Oh My Zsh installation file
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        dest: "{{ ohmyzsh_temp.path }}/install.sh"
+        mode: u=rwx,g=r,o=r
 
-- name: Create a default ZSH configuration
-  template:
-    src: templates/.zshrc.j2
-    dest: "{{ lookup('env', 'HOME') }}/.zshrc"
-    owner: "{{ lookup('env', 'USER') }}"
-    force: yes
+    - name: Install Oh My ZSH
+      ansible.builtin.shell: ./install.sh
+      args:
+        chdir: "{{ ohmyzsh_temp.path }}"
+        creates: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
 
-- name: Update current session
-  shell: source "{{ lookup('env', 'HOME') }}/.zshrc"
+    - name: Update current session
+      ansible.builtin.shell: "{{ansible_user_shell}} -c 'source {{ lookup('env', 'HOME') }}/.zshrc'"
+  when: lookup('env', 'SHELL') is contains('zsh')
+

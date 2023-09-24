@@ -1,0 +1,9 @@
+- name: Manage package
+  become: true
+  community.general.snap:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+    channel: "{{ item.channel | default(omit) }}"
+    classic: "{{ item.classic | default(omit) }}"
+  with_items: "{{ snap_apps }}"
+  

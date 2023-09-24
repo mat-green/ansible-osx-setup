@@ -1,0 +1,20 @@
+---
+
+- name: Manage applications
+  become: "{{ 'yes' if item.method is defined and item.method == 'system' else 'no' }}"
+  community.general.flatpak:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+    method: "{{ item.method | default(defaults.method | default('user')) }}"
+    remote: "{{ item.remote | default('flathub') }}"
+  with_items: "{{ flatpak_apps }}"
+  when: flatpak_apps is defined
+
+- name: Set up optional auto start configuration
+  ansible.builtin.copy:
+    src: "/var/lib/flatpak/exports/share/applications/{{ item.name }}.desktop"
+    dest: "~/.config/autostart/{{ item.name }}.desktop"
+    follow: no
+  with_items: "{{ flatpak_apps }}"
+  when: flatpak_apps is defined and item.autostart is defined and item.autostart == true
+ 

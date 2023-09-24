@@ -1,0 +1,14 @@
+---
+
+- name: Include OS specific vars
+  include_vars: "{{ ansible_facts['distribution'] | replace(' ', '') }}.yml"
+
+- name: "Include {{ ansible_facts['distribution'] }} install tasks"
+  include_tasks: "{{ ansible_facts['distribution'] | replace(' ', '') }}/install.yml"
+
+- name: "Include {{ ansible_facts['distribution'] }} configuration tasks"
+  include_tasks: "{{ ansible_facts['distribution'] | replace(' ', '') }}/configure.yml"
+
+- name: "Include applications management tasks"
+  include_tasks: "applications.yml"
+

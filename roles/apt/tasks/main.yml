@@ -1,0 +1,35 @@
+---
+- name: Adding apt key for repository
+  become: yes
+  apt_key:
+    url: "{{ item.key_url }}"
+    state: present
+  when: item.key_url is defined
+  with_items:
+    - "{{ apt_repositories }}"
+  tags: packages
+
+- name: Adding apt repository
+  become: yes
+  apt_repository:
+    repo: "{{ item.sources_entry }}"
+    state: present
+    update_cache: no
+  with_items:
+    - "{{ apt_repositories }}"
+  tags: packages
+
+- name: Updating apt cache
+  become: yes
+  apt:
+    update_cache: yes
+  tags: packages
+
+- name: Manage package
+  become: yes
+  apt:
+    pkg: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  with_items:
+    - "{{apt_packages }}"
+  tags: packages

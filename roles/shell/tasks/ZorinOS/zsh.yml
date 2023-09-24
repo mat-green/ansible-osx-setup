@@ -1,0 +1,23 @@
+---
+- block:
+  - name: Add upstream repository to sources list
+    become: yes
+    ansible.builtin.apt_repository:
+      repo: deb http://ca.archive.ubuntu.com/ubuntu jammy main universal restricted
+      state: present
+
+  - name: Install supporting shell packages
+    become: yes
+    ansible.builtin.apt:
+      name:
+        - libc6
+        - libssl3
+      state: latest
+      
+  - name: Remove upstream repository to sources list
+    become: yes
+    ansible.builtin.apt_repository:
+      repo: deb http://ca.archive.ubuntu.com/ubuntu jammy main universal restricted
+      state: absent
+
+  when: ansible_facts['distribution_version'] is version('16', '<=')

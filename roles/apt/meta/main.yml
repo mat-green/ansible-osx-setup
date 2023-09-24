@@ -1,0 +1,18 @@
+galaxy_info:
+  role_name: apt
+  author: Matthew Green
+  description: This will manage APT packages on a system
+  license: "MIT"
+  min_ansible_version: 1.4
+  platforms:
+    - name: Debian
+      versions:
+        - squeeze
+        - wheezy
+    - name: Zorin
+      versions:
+         - "16"
+  galaxy_tags:
+    - system
+    - packaging
+dependencies: []

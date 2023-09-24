@@ -1,22 +1,13 @@
 #!/bin/sh
-check=$((xcode-\select --install) 2>&1)
-str="xcode-select: note: install requested for command line developer tools"
-while [[ "$check" == "$str" ]];
-do
-  osascript -e 'tell app "System Events" to display dialog "xcode command-line tools missing." buttons "OK" default button 1 with title "xcode command-line tools"'
-  exit;
-done
 
-# xcode-select -p
-# if not successfull then:
-xcodebuild -license
-# on only do this on apple silicon
-# /usr/sbin/softwareupdate --install-rosetta
-git config --global http.postBuffer 524288000
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python3 get-pip.py
-sudo pip3 install --ignore-installed ansible
+sudo apt-get -y update
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install -y ansible
+sudo apt install -y python3-pip
+pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org oauthlib -vvv
+
 ansible-galaxy role install -r requirements.yml
 ansible-galaxy collection install -r requirements.yml
-# Stop screen saver before starting to stop homebrew failing to download inital update force.
-ansible-playbook -i "localhost," -c local ansible_osx.yml --ask-become-pass
+ansible-playbook -i "localhost," -c local ansible_zorin_os.yml --ask-become-pass
+

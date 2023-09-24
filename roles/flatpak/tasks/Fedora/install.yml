@@ -1,0 +1,9 @@
+---
+
+- name: Install required flatpak packages
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ flatpak_required_packages }}"
+

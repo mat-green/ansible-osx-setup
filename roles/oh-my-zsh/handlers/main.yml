@@ -1,0 +1,4 @@
+---
+- name: Restart session
+  debug:
+    msg: "System needs a restart session and ansible re-run for shell update to take effect!"
