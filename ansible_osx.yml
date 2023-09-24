@@ -39,6 +39,7 @@
       - flux
       - gimp
       - google-chrome
+      - google-drive
       - grammarly
       - kindle
       - iterm2
@@ -53,6 +54,7 @@
       - slack
       - spotify
       - steam
+      - syncthing
       - telegram
       - vlc
       - visual-studio-code
@@ -66,13 +68,13 @@
       - gawk
       - git-lfs
       - gpg
+      - helm
       - htop
       - jq
       - mas
       - packer
       - postgresql
       - pnpm
-      - syncthing
       - terraform-ls
       - unzip
       - zsh
@@ -106,3 +108,5 @@
     - asdf
     - vscode
     - patches
+
+# AWS CLI?
