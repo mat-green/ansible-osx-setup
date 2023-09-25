@@ -2,3 +2,7 @@ Host bitbucket.org
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_ssh_ed25519
 
+Host github.com
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_ssh_ed25519
+
