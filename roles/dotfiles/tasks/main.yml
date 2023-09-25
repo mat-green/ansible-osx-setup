@@ -1,0 +1,19 @@
+---
+
+- name: "Include {{ ansible_facts['distribution'] }} install tasks"
+  include_tasks: "{{ ansible_facts['distribution'] | replace(' ', '') }}/install.yml"
+
+- name: Include clone tasks"
+  include_tasks: clone.yml
+  with_items: "{{ dotfiles }}"
+  loop_control:
+    loop_var: rcm_repo
+    
+- name: Write Default .rcrc File
+  template:
+    src: 'templates/rcrc.j2'
+    dest: "{{ lookup('env', 'HOME') }}/.rcrc"
+    mode: u=rx,g=rw,o=r
+
+- name: Deploy dotfiles
+  command: rcup

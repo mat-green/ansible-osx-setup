@@ -1,0 +1,13 @@
+---
+
+- name: Install RCM
+  become: true
+  ansible.builtin.package:
+    name: rcm
+
+- name: Install supporting role packages
+  become: true
+  ansible.builtin.package:
+    name: git
+    state: present
+

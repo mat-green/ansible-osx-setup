@@ -1,0 +1,5 @@
+---
+- name: Copy key
+  debug:
+    msg: "To copy public key execute the following CLI command 'cat ~/.ssh/id_ssh_ed25519.pub | xclip -sel clip'"
+

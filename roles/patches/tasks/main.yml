@@ -1,19 +1,3 @@
-# [START] Git Configuration ---------------------------------------------------
-- name: Git Email Configuration
-  community.general.git_config:
-    name: user.email
-    scope: global
-    value: "{{ lookup('env', 'GIT_EMAIL') }}"
-  when: lookup('env', 'GIT_EMAIL')
-
-- name: Git Email Configuration
-  community.general.git_config:
-    name: user.name
-    scope: global
-    value: "{{ lookup('env', 'GIT_NAME') }}"
-  when: lookup('env', 'GIT_NAME')
-# [END]   Git Configuration ---------------------------------------------------
-
 # [START] Unifi Configuration -------------------------------------------------
 - name: Unifi symbolic link to JVM
   ansible.builtin.file:

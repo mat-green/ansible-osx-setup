@@ -1,0 +1,4 @@
+Host bitbucket.org
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_ssh_ed25519
+

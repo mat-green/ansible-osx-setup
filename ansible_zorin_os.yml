@@ -5,6 +5,7 @@
       - name: aisleriot
         state: absent
       #- name: chrome-gnome-shell
+      - name: freecad
       - name: gawk
       #- name: git
       #- name: git-lfs
@@ -37,13 +38,17 @@
 #        state: absent
 #      - name: xboxdrv
 #        state: absent
-      #- name: zorin-connect
-      #- name: gnome-shell-extension-zorin-connect
+      - name: zorin-connect
+      - name: gnome-shell-extension-zorin-connect
       # packer https://developer.hashicorp.com/packer/downloads
       # terraform https://developer.hashicorp.com/terraform/downloads
       # postgresql https://www.postgresql.org/download/linux/ubuntu/
     #apt_repositories:
     #  - sources_entry: ppa:ubuntu-toolchain-r/test
+    dotfiles:
+      - repo: "https://github.com/mat-green/dotfiles.git"
+        branch: zorin
+        dest: "{{ lookup('env', 'HOME') }}/.dotfiles/mat-green"
     flatpak_apps:
       - name: com.adobe.Reader
       - name: com.discordapp.Discord
@@ -56,6 +61,8 @@
       - name: com.system76.Popsicle
 #      - name: com.valvesoftware.Steam
 #        state: absent
+#      - name: com.visualstudio.code
+      - name: com.usebottles.bottles
       - name: io.github.hakandundar34coding.system-monitoring-center
       - name: io.github.mimbrero.WhatsAppDesktop
       - name: io.github.trevorsandy.LPub3D
@@ -69,26 +76,22 @@
     #homebrew_bottles:
     #  - name: terraform-ls
     wine_apps:
-      - name: bricklink-studio # password
+      - name: Studio+2.0.exe # bricklink-studio
       - name: canon-captureontouch-utility # password
-#    snap_apps:
-#      - name: code
-#        classic: true
-#      - name: doctl
+    snap_apps:
+      - name: doctl
   roles:
   # System Set Up
+    - name: dotfiles
     - name: oh-my-zsh
-    # Setting Theme
-    # Evolution (Email)
-    
+    # Setting Theme - complex set up using 'gsetting' command but is a simple gui change.
   # Software Install
-    #- name: flatpak
-    # WINE application management
-    #- name: snap
-    #- name: apt
-    #- name: homebrew
-    # Development Software
-    # GIT
+    - name: flatpak
+    - name: snap
+    - name: wine
+    - name: apt
+  # Development Software
+    - name: git
     # asdf https://asdf-vm.com/guide/getting-started.html
     # pnpm https://pnpm.io/installation#on-posix-systems
     # VSCode

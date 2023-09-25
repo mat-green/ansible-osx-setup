@@ -1,0 +1,48 @@
+---
+- name: Install git packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - git
+      - git-lfs
+      - xclip
+    state: present
+
+- name: Configure global email
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_email }}"
+  when: git_email is defined
+
+- name: Configure global name
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ git_name }}"
+  when: git_name is defined
+  
+- name: Add SaaS providers to known_hosts
+  become: true
+  ansible.builtin.known_hosts:
+    name: "{{ item.hostname }}"
+    key: "{{ item.hostname }} {{ item.enctype }} {{ item.fingerprint }}"
+    path: /etc/ssh/ssh_known_hosts
+    state: present
+  with_items: "{{ git_known_hosts }}"
+  
+- name: Generate an OpenSSH keypair
+  community.crypto.openssh_keypair:
+    comment: "{{ git_email }}"
+    path: "{{ lookup('env', 'HOME') }}/.ssh/id_ssh_ed25519"
+    type: ed25519
+  when: git_email is defined
+  notify:
+    - Copy key
+  
+- name: Copy ssh config file
+  ansible.builtin.copy:
+    src: "../templates/ssh/config"
+    dest: "{{ lookup('env', 'HOME') }}/.ssh/config"
+
+# TODO: Automatic upload to SaaS providers

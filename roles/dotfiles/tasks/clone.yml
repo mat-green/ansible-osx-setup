@@ -1,0 +1,17 @@
+---
+
+# This task file should be used as an include with the `rcm_repo` variable set to the `rcm_repos` entry that a Git repo should be cloned for.
+
+- name: Check to See if Git Repo Exists
+  become: true
+  stat:
+    path: "{{ rcm_repo.dest }}"
+  register: stat_repo
+
+- name: Clone Git Repo Locally
+  git:
+    repo: "{{ rcm_repo.repo }}"
+    dest: "{{ rcm_repo.dest }}"
+    version: "{{ rcm_repo.branch }}"
+  when: stat_repo.stat.exists is not defined or stat_repo.stat.exists == false
+

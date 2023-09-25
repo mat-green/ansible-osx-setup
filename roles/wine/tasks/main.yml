@@ -1,0 +1,21 @@
+- name: install multiarch packages
+  become: yes
+  package:
+    name:
+      - libc6:i386
+      - libncurses5:i386
+      - libstdc++6:i386
+      - lib32z1
+      - libbz2-1.0:i386
+  tags: packages
+
+- name: install wine packages
+  become: yes
+  package:
+    name:
+      - zorin-windows-app-support
+      - winetricks
+      - wine32:i386
+      - ttf-mscorefonts-installer
+  tags: packages
+
