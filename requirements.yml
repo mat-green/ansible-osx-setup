@@ -1,4 +1,5 @@
 ---
 roles:
+  - cimon-io.asdf
 collections:
   - name: community.general

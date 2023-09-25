@@ -45,6 +45,16 @@
       # postgresql https://www.postgresql.org/download/linux/ubuntu/
     #apt_repositories:
     #  - sources_entry: ppa:ubuntu-toolchain-r/test
+    asdf_user: "{{ lookup('env', 'USER') }}"
+    asdf_group: "{{ lookup('env', 'USER') }}"
+    asdf_plugins:
+      - name: nodejs
+      - name: pnpm
+      - name: python
+      - name: ruby
+      - name: packer
+      - name: terraform
+      - name: terraform-ls
     dotfiles:
       - repo: "https://github.com/mat-green/dotfiles.git"
         branch: zorin
@@ -73,8 +83,6 @@
       - name: org.signal.Signal
       - name: org.telegram.desktop
       - name: us.zoom.Zoom
-    #homebrew_bottles:
-    #  - name: terraform-ls
     wine_apps:
       - name: Studio+2.0.exe # bricklink-studio
       - name: canon-captureontouch-utility # password
@@ -92,12 +100,9 @@
     - name: apt
   # Development Software
     - name: git
-    # asdf https://asdf-vm.com/guide/getting-started.html
+    - name: cimon-io.asdf
     # pnpm https://pnpm.io/installation#on-posix-systems
     # VSCode
     # doctl https://docs.digitalocean.com/reference/doctl/how-to/install/
     # Gnome extensions https://linuxconfig.org/how-to-install-gnome-shell-extensions-from-zip-file-using-command-line-on-ubuntu-18-04-bionic-beaver-linux
-      # Zorin Connect
-    
-    
 
