@@ -1,0 +1,6 @@
+--- 
+- name: Install VSCode application
+  become: yes
+  ansible.builtin.apt:
+    deb: https://go.microsoft.com/fwlink/?LinkID=760868
+

@@ -1,5 +1,0 @@
----
-- name: Restart system
-  debug:
-    msg: "System needs a reboot for kernel update to take effect!"
-

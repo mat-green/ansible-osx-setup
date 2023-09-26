@@ -1,0 +1,19 @@
+---
+# https://docs.digitalocean.com/reference/doctl/how-to/install/ 
+- name: Install digital ocean cli package
+  become: true
+  community.general.snap:
+    name: doctl
+
+- name: Snap Packages - Setup Plugs
+  become: true
+  become_method: sudo
+  changed_when: false
+  shell: 'snap connect {{ item.app }}:{{ item.plug }}'
+  with_items:
+    - plug: kube-config
+      app: doctl
+    - plug: ssh-keys :ssh-keys
+      app: doctl
+    - plug: dot-docker
+      app: doctl

@@ -49,6 +49,8 @@
     asdf_group: "{{ lookup('env', 'USER') }}"
     asdf_plugins:
       - name: nodejs
+        # versions: []
+        # global:
       - name: pnpm
       - name: python
       - name: ruby
@@ -71,7 +73,6 @@
       - name: com.system76.Popsicle
 #      - name: com.valvesoftware.Steam
 #        state: absent
-#      - name: com.visualstudio.code
       - name: com.usebottles.bottles
       - name: io.github.hakandundar34coding.system-monitoring-center
       - name: io.github.mimbrero.WhatsAppDesktop
@@ -86,8 +87,8 @@
     wine_apps:
       - name: Studio+2.0.exe # bricklink-studio
       - name: canon-captureontouch-utility # password
-    snap_apps:
-      - name: doctl
+#    snap_apps:
+#      - name: doctl
   roles:
   # System Set Up
     - name: dotfiles
@@ -95,14 +96,13 @@
     # Setting Theme - complex set up using 'gsetting' command but is a simple gui change.
   # Software Install
     - name: flatpak
-    - name: snap
+#    - name: snap
     - name: wine
     - name: apt
   # Development Software
     - name: git
     - name: cimon-io.asdf
-    # pnpm https://pnpm.io/installation#on-posix-systems
-    # VSCode
-    # doctl https://docs.digitalocean.com/reference/doctl/how-to/install/
+    - name: vscode
+    - name: doctl
     # Gnome extensions https://linuxconfig.org/how-to-install-gnome-shell-extensions-from-zip-file-using-command-line-on-ubuntu-18-04-bionic-beaver-linux
 

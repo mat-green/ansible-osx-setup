@@ -1,8 +1,0 @@
----
-- name: Add bluetooth config to disable ERTM
-  become: yes
-  community.general.modprobe:
-    name: bluetooth
-    params: "options bluetooth disable_ERTM=Y"
-    persistent: present
-

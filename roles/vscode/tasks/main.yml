@@ -1,24 +1,10 @@
 ---
-- name: Ensure User Configuration Folder Exists
-  file: 
-    path: "{{ lookup('env', 'HOME') }}/Library/Application Support/Code/User"
-    owner: "{{ lookup('env', 'USER') }}"
-    recurse: yes
-    state: directory
+- name: "Include {{ ansible_facts['distribution'] }} install tasks"
+  include_tasks: "{{ ansible_facts['distribution'] | replace(' ', '') }}/install.yml"
 
-- name: Create a default VSCode configuration
-  template:
-    src: templates/vscode-settings.json.j2
-    dest: "{{ lookup('env', 'HOME') }}/Library/Application Support/Code/User/settings.json"
-    owner: "{{ lookup('env', 'USER') }}"
-    force: yes
-
-- name: Create a default VSCode keuybinding configuration
-  template:
-    src: templates/vscode-keybindings.json.j2
-    dest: "{{ lookup('env', 'HOME') }}/Library/Application Support/Code/User/keybindings.json"
-    owner: "{{ lookup('env', 'USER') }}"
-    force: yes
+# https://code.visualstudio.com/docs/getstarted/settings#_settings-file-locations
+- name: "Include {{ ansible_facts['distribution'] }} configuration tasks"
+  include_tasks: "{{ ansible_facts['distribution'] | replace(' ', '') }}/config.yml"
 
 # Add something which ensures path is set here
 - name: Install VSCode extensions

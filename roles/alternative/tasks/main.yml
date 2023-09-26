@@ -1,9 +1,0 @@
-- name: Alternatives link created
-  become: yes
-  community.general.alternatives:
-    name: "{{ item.name }}"
-    link: "{{ item.link | default(omit) }}"
-    path: "{{ item.path }}"
-    priority: "{{ item.priority | default(omit) }}"
-    subcommands: "{{ item.slaves | default(omit) }}"
-  with_items: "{{ alternatives }}"

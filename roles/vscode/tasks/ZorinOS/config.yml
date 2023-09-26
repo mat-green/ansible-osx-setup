@@ -1,0 +1,22 @@
+---
+- name: Ensure User Configuration Folder Exists
+  file: 
+    path: "{{ lookup('env', 'HOME') }}/.config/Code/User"
+    owner: "{{ lookup('env', 'USER') }}"
+    recurse: yes
+    state: directory
+
+- name: Create a default VSCode settings configuration
+  template:
+    src: templates/vscode-settings.json.j2
+    dest: "{{ lookup('env', 'HOME') }}/.config/Code/User/settings.json"
+    owner: "{{ lookup('env', 'USER') }}"
+    force: yes
+
+- name: Create a default VSCode keybinding configuration
+  template:
+    src: templates/vscode-keybindings.json.j2
+    dest: "{{ lookup('env', 'HOME') }}/.config/Code/User/keybindings.json"
+    owner: "{{ lookup('env', 'USER') }}"
+    force: yes
+
