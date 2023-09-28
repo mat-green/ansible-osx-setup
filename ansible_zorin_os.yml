@@ -87,8 +87,6 @@
     wine_apps:
       - name: Studio+2.0.exe # bricklink-studio
       - name: canon-captureontouch-utility # password
-#    snap_apps:
-#      - name: doctl
   roles:
   # System Set Up
     - name: dotfiles

@@ -1,5 +1,5 @@
 - name: install multiarch packages
-  become: yes
+  become: true
   package:
     name:
       - libc6:i386
@@ -10,7 +10,7 @@
   tags: packages
 
 - name: install wine packages
-  become: yes
+  become: true
   package:
     name:
       - zorin-windows-app-support
@@ -19,3 +19,4 @@
       - ttf-mscorefonts-installer
   tags: packages
 
+# Download and install applications?
