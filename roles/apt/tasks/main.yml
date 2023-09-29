@@ -5,8 +5,7 @@
     url: "{{ item.key_url }}"
     state: present
   when: item.key_url is defined
-  with_items:
-    - "{{ apt_repositories }}"
+  with_items: "{{ apt_repositories }}"
   tags: packages
 
 - name: Adding apt repository
@@ -15,8 +14,7 @@
     repo: "{{ item.sources_entry }}"
     state: present
     update_cache: no
-  with_items:
-    - "{{ apt_repositories }}"
+  with_items: "{{ apt_repositories }}"
   tags: packages
 
 - name: Updating apt cache
@@ -30,6 +28,13 @@
   apt:
     pkg: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
-  with_items:
-    - "{{apt_packages }}"
+  with_items: "{{apt_packages }}"
+  tags: packages
+
+- name: Manage debian package
+  become: yes
+  apt:
+    deb: "{{ item.url }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ apt_deb_packages }}"
   tags: packages

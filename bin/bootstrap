@@ -1,22 +1,5 @@
 #!/bin/sh
 
-while getopts n:e: flag
-do
-    case "${flag}" in
-        n) GIT_NAME=${OPTARG};;
-        e) GIT_EMAIL=${OPTARG};;
-    esac
-done
-
-EXTRA_VARS=""
-if [[ -v GIT_NAME && -n $GIT_NAME ]]; then
-  EXTRA_VARS="git_name=$GIT_NAME";
-fi
-
-if [[ -v GIT_EMAIL && -n $GIT_EMAIL ]]; then
-  EXTRA_VARS="git_email=$GIT_EMAIL ${EXTRA_VARS}";
-fi
-
 sudo apt-get -y update
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository --yes --update ppa:ansible/ansible
@@ -27,9 +10,4 @@ pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trus
 ansible-galaxy role install -r requirements.yml
 ansible-galaxy collection install -r requirements.yml
 
-if [[ -n $EXTRA_VARS ]]; then
-  ansible-playbook -i "localhost," -c local ansible_zorin_os.yml  --extra-vars "$EXTRA_VARS" --ask-become-pass
-else
-  ansible-playbook -i "localhost," -c local ansible_zorin_os.yml --ask-become-pass
-fi
-
+ansible-playbook -i "localhost," -c local ansible_wsl_ubuntu.yml --ask-become-pass

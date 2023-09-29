@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  vars:
+    apt_deb_packages:
+      - url: https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.deb
+    asdf_user: "{{ lookup('env', 'USER') }}"
+    asdf_group: "{{ lookup('env', 'USER') }}"
+    asdf_plugins:
+      - name: nodejs
+        # versions: []
+        # global:
+      - name: pnpm
+      - name: python
+      - name: packer
+      - name: terraform
+      - name: terraform-ls
+  roles:
+    - name: apt
+    - name: cimon-io.asdf
