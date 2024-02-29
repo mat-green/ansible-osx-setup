@@ -1,0 +1,14 @@
+---
+# see https://www.giuspen.com/x-tile/
+# mkdir -p ~/.config/autostart && ln -s /usr/share/applications/x-tile.desktop ~/.config/autostart/x-tile.desktop
+- name: create user x-tile autostart directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/autostart"
+    state: directory
+    mode: '0755'
+
+- name: create user x-tile symbolic link for autostart
+  ansible.builtin.file:
+    src: /usr/share/applications/x-tile.desktop
+    dest: "{{ ansible_env.HOME }}/.config/autostart/x-tile.desktop"
+    state: link
