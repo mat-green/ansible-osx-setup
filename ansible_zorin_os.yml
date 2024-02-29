@@ -5,10 +5,7 @@
       - name: aisleriot
         state: absent
       #- name: chrome-gnome-shell
-      - name: freecad
       - name: gawk
-      #- name: git
-      #- name: git-lfs
       - name: gnome-mahjongg
         state: absent
       - name: gnome-mines
@@ -34,24 +31,32 @@
         state: absent
       - name: rhythmbox
         state: absent
-#      - name: steam-devices
-#        state: absent
-#      - name: xboxdrv
-#        state: absent
+      - name: vgrabbj
+      - name: stopmotion
       - name: zorin-connect
       - name: gnome-shell-extension-zorin-connect
-      # packer https://developer.hashicorp.com/packer/downloads
-      # terraform https://developer.hashicorp.com/terraform/downloads
+      - name: chrome-gnome-shell # newer name: gnome-browser-connector
+      - name: gnome-shell-extension-prefs
+      - name: gnome-shell-extension-manager
+      - name: motion
+        state: absent
+      - name: ffmpeg
+      - name: podman
       # postgresql https://www.postgresql.org/download/linux/ubuntu/
-    #apt_repositories:
+      - name: x-tile
+    apt_repositories:
+     - sources_entry: ppa:giuspen/ppa
     #  - sources_entry: ppa:ubuntu-toolchain-r/test
     asdf_user: "{{ lookup('env', 'USER') }}"
     asdf_group: "{{ lookup('env', 'USER') }}"
     asdf_plugins:
       - name: nodejs
-        # versions: []
+        versions:
+          - 18.4.0
         # global:
       - name: pnpm
+        versions:
+          - 8.15.4
       - name: python
       - name: ruby
       - name: packer
@@ -71,8 +76,6 @@
       - name: com.slack.Slack
       - name: com.spotify.Client
       - name: com.system76.Popsicle
-#      - name: com.valvesoftware.Steam
-#        state: absent
       - name: com.usebottles.bottles
       - name: io.github.hakandundar34coding.system-monitoring-center
       - name: io.github.mimbrero.WhatsAppDesktop
@@ -80,6 +83,7 @@
       - name: io.podman_desktop.PodmanDesktop
       - name: md.obsidian.Obsidian
       - name: org.blender.Blender
+      - name: org.freecadweb.FreeCAD
       - name: org.leocad.LeoCAD
       - name: org.signal.Signal
       - name: org.telegram.desktop
@@ -97,6 +101,7 @@
 #    - name: snap
     - name: wine
     - name: apt
+    - name: os-tweaks
   # Development Software
     - name: git
     - name: cimon-io.asdf
