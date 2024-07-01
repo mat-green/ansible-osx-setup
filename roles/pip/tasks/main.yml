@@ -1,0 +1,6 @@
+---
+- name: install python packages via pip
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    executable: pip3
+  loop: "{{ python_packages }}"

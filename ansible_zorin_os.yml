@@ -53,6 +53,7 @@
       - name: nodejs
         versions:
           - 18.4.0
+          - 16.16.0
         # global:
       - name: pnpm
         versions:
@@ -88,6 +89,9 @@
       - name: org.signal.Signal
       - name: org.telegram.desktop
       - name: us.zoom.Zoom
+    python_packages: # global python libs
+      - numpy
+      - pyside2
     wine_apps:
       - name: Studio+2.0.exe # bricklink-studio
       - name: canon-captureontouch-utility # password
@@ -101,6 +105,7 @@
 #    - name: snap
     - name: wine
     - name: apt
+    - name: pip
     - name: os-tweaks
   # Development Software
     - name: git
