@@ -1,0 +1,50 @@
+- name: create godot opt directory
+  become: true
+  ansible.builtin.file:
+    path: /opt/godot
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: root
+    mode: '0755'
+
+# download version
+- name: download Godot_v4.2.2-stable_linux.x86_64.zip
+  ansible.builtin.get_url:
+    url: https://github.com/godotengine/godot/releases/download/4.2.2-stable/Godot_v4.2.2-stable_linux.x86_64.zip
+    dest: /opt/godot/Godot_v4.2.2-stable_linux.x86_64.zip
+    mode: '0655'
+
+# unzip version
+- name: extract Godot_v4.2.2-stable_linux.x86_64.zip into /var/lib/foo
+  ansible.builtin.unarchive:
+    src: /opt/godot/Godot_v4.2.2-stable_linux.x86_64.zip
+    dest: /opt/godot/
+
+# link version /user/loca/bin/godot-engine
+- name: create a symbolic link
+  become: true
+  ansible.builtin.file:
+    src: /opt/godot/Godot_v4.2.2-stable_linux.x86_64
+    dest: /usr/local/bin/godot-engine
+    group: root
+    state: link
+
+# correct permissions
+- name: Touch Godot_v4.2.2-stable_linux.x86_64, using symbolic modes to set the permissions
+  ansible.builtin.file:
+    path: /opt/godot/Godot_v4.2.2-stable_linux.x86_64
+    state: touch
+    mode: a+x
+
+# create  launcher for Godot 
+- name: Copy desktop file
+  ansible.builtin.copy:
+    src: desktop
+    dest: ~/.local/share/applications/godot.desktop
+    mode: '0644'
+
+- name: Copy icon file
+  ansible.builtin.copy:
+    src: godot.png
+    dest: ~/.local/share/icons/godot.png
+    mode: '0644'

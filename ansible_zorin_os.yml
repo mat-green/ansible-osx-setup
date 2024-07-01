@@ -112,5 +112,6 @@
     - name: cimon-io.asdf
     - name: vscode
     - name: doctl
+    - name: godot
     # Gnome extensions https://linuxconfig.org/how-to-install-gnome-shell-extensions-from-zip-file-using-command-line-on-ubuntu-18-04-bionic-beaver-linux
 
