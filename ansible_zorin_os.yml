@@ -43,7 +43,6 @@
       - name: ffmpeg
       - name: podman
       # postgresql https://www.postgresql.org/download/linux/ubuntu/
-      - name: x-tile
     apt_repositories:
      - sources_entry: ppa:giuspen/ppa
     #  - sources_entry: ppa:ubuntu-toolchain-r/test

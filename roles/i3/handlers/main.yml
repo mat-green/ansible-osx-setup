@@ -1,0 +1,4 @@
+---
+- name: i3 reboot
+  ansible.builtin.reboot:
+    msg: "Rebooting machine as bluetooth configuration changed"
