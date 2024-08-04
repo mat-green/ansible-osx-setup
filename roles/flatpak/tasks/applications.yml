@@ -1,6 +1,6 @@
 ---
 
-- name: Manage applications
+- name: manage applications
   become: "{{ 'yes' if item.method is defined and item.method == 'system' else 'no' }}"
   community.general.flatpak:
     name: "{{ item.name }}"
@@ -10,7 +10,7 @@
   with_items: "{{ flatpak_apps }}"
   when: flatpak_apps is defined
 
-- name: Set up optional auto start configuration
+- name: set up optional auto start configuration
   ansible.builtin.copy:
     src: "/var/lib/flatpak/exports/share/applications/{{ item.name }}.desktop"
     dest: "~/.config/autostart/{{ item.name }}.desktop"
@@ -18,3 +18,10 @@
   with_items: "{{ flatpak_apps }}"
   when: flatpak_apps is defined and item.autostart is defined and item.autostart == true
  
+- name: set up command line instruction
+  become: true
+  ansible.builtin.copy:
+    content: "flatpak run {{ item.name }}"
+    dest: "/usr/local/bin/{{ item.cmd }}"
+  with_items: "{{ flatpak_apps }}"
+  when: flatpak_apps is defined and item.cmd is defined
