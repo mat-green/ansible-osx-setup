@@ -79,11 +79,13 @@
       - name: com.system76.Popsicle
       - name: com.usebottles.bottles
       - name: io.github.hakandundar34coding.system-monitoring-center
+      - name: io.github.MakovWait.Godots
       - name: io.github.mimbrero.WhatsAppDesktop
       - name: io.github.trevorsandy.LPub3D
       - name: io.podman_desktop.PodmanDesktop
       - name: md.obsidian.Obsidian
       - name: org.blender.Blender
+        cmd: blender
       - name: org.freecadweb.FreeCAD
       - name: org.leocad.LeoCAD
       - name: org.signal.Signal
@@ -97,6 +99,7 @@
       - name: canon-captureontouch-utility # password
   roles:
   # System Set Up
+    - name: bluetooth
     - name: dotfiles
     - name: oh-my-zsh
     # Setting Theme - complex set up using 'gsetting' command but is a simple gui change.
@@ -112,6 +115,8 @@
     - name: cimon-io.asdf
     - name: vscode
     - name: doctl
-    - name: godot
+    - name: godot-conf
     # Gnome extensions https://linuxconfig.org/how-to-install-gnome-shell-extensions-from-zip-file-using-command-line-on-ubuntu-18-04-bionic-beaver-linux
 
+# TODO
+# i3 installation and configuration
