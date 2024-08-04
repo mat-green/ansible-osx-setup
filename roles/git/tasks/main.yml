@@ -21,6 +21,12 @@
     scope: global
     value: "{{ git_name }}"
   when: git_name is defined
+
+- name: Configure global editor
+  community.general.git_config:
+    name: core.editor
+    scope: global
+    value: vi
   
 - name: Add SaaS providers to known_hosts
   become: true
