@@ -1,0 +1,8 @@
+---
+- name: Hide Apple For K2 Keyboard
+  ansible.builtin.shell:
+    cmd: echo "options hid_apple fnmode=2 swap_opt_cmd=1" | sudo tee /etc/modprobe.d/hid_apple.conf
+  args:
+    creates: /etc/modprobe.d/hid_apple.conf
+  notify:
+    - bluetooth reboot

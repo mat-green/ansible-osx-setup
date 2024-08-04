@@ -1,0 +1,4 @@
+---
+- name: bluetooth reboot
+  ansible.builtin.reboot:
+    msg: "Rebooting machine as bluetooth configuration changed"
