@@ -1,0 +1,8 @@
+---
+- name: add node script template
+  ansible.builtin.copy:
+    src: home/.config/godot/script_templates/Node/code_order.gd
+    dest: "{{ lookup('env', 'HOME') }}/.config/godot/script_templates/Node/code_order.gd"
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
+    mode: '0644'
